@@ -1,18 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, "client", "src", "index.js"), // Update the entry path
+    entry: path.join(__dirname, "src", "index.js"), // Update the entry path
     mode: 'development',
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "client", "dist"), // Update the output path
-    },
-    resolve: {
-        alias: {
-            'react': path.resolve('./node_modules/react'),
-            'react-dom': path.resolve('./node_modules/react-dom'),
-        },
+        path: path.resolve(__dirname, "dist"), // Update the output path
     },
     module: {
         rules: [
@@ -37,8 +32,9 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, "client", "dist", "index.html"), // Update the template path
+            template: path.join(__dirname,  "src", "index.html"), // Update the template path
         }),
     ],
 }
